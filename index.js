@@ -1,32 +1,20 @@
 const express = require('express');
-const http = require('http');
-const path = require('path');
-const reload = require('reload');
-const bodyParser = require('body-parser');
+const multer = require('multer');
 const cookieParser = require('cookie-parser');
-const requestHandler = require('./request_handler');
+const upload = multer();
+const requestHandler = require('./request_handler').default;
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
+app.use(upload.array());
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/api/gateway/', requestHandler);
 
-app.use(bodyParser.json());
-app.use(cookieParser());
-const server = http.createServer(app);
-
-reload(app)
-	.then(function(reloadReturned) {
-		// reloadReturned is documented in the returns API in the README
-
-		// Reload started, start web server
-		server.listen(app.get('port'), function() {
-			console.log('Web server listening on port ' + app.get('port'));
-		});
-	})
-	.catch(function(err) {
-		console.error(
-			'Reload could not start, could not start server/sample app',
-			err
-		);
-	});
+app.listen(app.get('port'), function() {
+	console.log('Web server listening on port ' + app.get('port'));
+});
