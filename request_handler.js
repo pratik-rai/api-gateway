@@ -1,4 +1,5 @@
 const requestHandler = (req, res) => {
+	console.log(req.body);
 	// read cookies
 	console.log(req.cookies);
 
