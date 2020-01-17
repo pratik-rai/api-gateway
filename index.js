@@ -1,9 +1,20 @@
 const express = require('express');
-const requestHandler = require('./request_handler');
+const multer = require('multer');
+const cookieParser = require('cookie-parser');
+const upload = multer();
+const requestHandler = require('./request_handler').default;
 const app = express();
-const port = 3000;
+
+app.set('port', process.env.PORT || 3000);
+app.use(upload.array());
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.get('/', (req, res) => res.send('Hello World!'));
 app.get('/api/gateway/', requestHandler);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(app.get('port'), function() {
+	console.log('Web server listening on port ' + app.get('port'));
+});
