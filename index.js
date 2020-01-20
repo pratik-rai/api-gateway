@@ -2,7 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
 const upload = multer();
-const requestHandler = require('./request_handler').default;
+const requestHandler = require('./request_handler');
 const app = express();
 
 app.set('port', process.env.PORT || 3000);
