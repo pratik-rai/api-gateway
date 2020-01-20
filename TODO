@@ -1,7 +1,9 @@
 Initially for presentation:
-	[] Make the api work for joblift as well
-	[] Standardize the response
-	[] Run the API in a server
-	[] Make a minified singular template for Treebay and Joblift
-	[] Make presentation with benefits
-	[] Practice presentation
+	✔ Make the api work for joblift as well @started(20-01-20 10:25) @done(20-01-20 10:48) @lasted(23m28s)
+	☐ Run the API in a server @started(20-01-20 10:48)
+	☐ Standardize the response
+	☐ Make a minified singular template for Treebay and Joblift
+	☐ Make presentation with benefits
+	☐ Practice presentation
+	☐ Add Typescript
+	☐ Add tslint + eslint
